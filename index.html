@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Made of Others</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="memory"></div>
+
+<script>
+
+const words = [
+  "You taught me how to be brave.",
+  "I still laugh the way you do.",
+  "I learned to leave from you.",
+  "You changed the way I see the world.",
+  "I remember how you made me feel.",
+  "Some of your words became mine.",
+  "I still carry a little of your kindness.",
+  "I became someone different after you."
+];
+
+const colors = [
+  "#F6D5DF", "#E9D9F6", "#CFE5F7",
+  "#D4EEDC", "#FFF0C7", "#FFDDCA",
+  "#DBDDF8", "#F5E0ED", "#D8E9CE"
+];
+
+const memory = document.getElementById("memory");
+
+// Create 45 squares
+for (let i = 0; i < 45; i++) {
+
+  const square = document.createElement("div");
+  square.className = "square";
+
+  // Random position, leaving the center empty
+  let x, y;
+
+  do {
+    x = 5 + Math.random() * 85;
+    y = 5 + Math.random() * 85;
+  } while (x > 25 && x < 75 && y > 30 && y < 70);
+
+  // Random size, color and speed
+  const size = 18 + Math.random() * 32;
+
+  square.style.left = x + "%";
+  square.style.top = y + "%";
+  square.style.width = size + "px";
+  square.style.height = size + "px";
+  square.style.background = colors[Math.floor(Math.random() * colors.length)];
+  square.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+  // Click
+  square.onclick = function() {
+    memory.textContent = words[Math.floor(Math.random() * words.length)];
+    memory.style.opacity = 1;
+    square.classList.add("gone");
+  };
+
+  document.body.appendChild(square);
+}
+
+</script>
+</body>
+</html>
